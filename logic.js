@@ -1,5 +1,6 @@
 const container = document.getElementById("feed-container");
 const overlay = document.querySelector(`.overlay`);
+const user_menu_toggle = document.getElementById(`user-menu-toggle`)
 
 /*let startY = 0;
 let dragging = false;
