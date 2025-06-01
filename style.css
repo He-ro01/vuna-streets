@@ -170,16 +170,22 @@
  }
 
  #online-status-container {
-     border: 1.5px solid;
+     border: 2px solid;
      color: #00CB76;
-     border-radius: 10px;
-     padding: 2px 50px;
+     border-radius: 20px;
+     padding: 5px 0px;
      font-size: 12px;
      width: 100%;
      display: flex;
      align-items: center;
-     justify-content: space-between;
+     justify-content: center;
 
+ }
+
+ #online-status-container span {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
  }
 
  #online-status-container i {
