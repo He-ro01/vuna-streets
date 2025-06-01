@@ -1,0 +1,15 @@
+.profile-home #panel-1 {
+    background-color: rgb(47, 47, 90);
+    height: 600px;
+    width: 100vw;
+}
+
+.profile-home #panel-2 {
+    background-color: rgba(46, 36, 36, 0);
+    width: 100vw;
+    height: 580px;
+}
+
+.profile-home #page-header {
+    background-color: rgb(255, 255, 255);
+}

@@ -2,6 +2,12 @@
      box-sizing: border-box;
  }
 
+ html {
+     overflow-y: scroll;
+     /* always reserve space for scrollbar */
+ }
+
+
  body {
      margin: 0;
      font-family: Arial, sans-serif;
@@ -15,16 +21,27 @@
  }
 
  .header {
-     display: flex;
-     justify-content: space-between;
      position: fixed;
      top: 0;
      left: 0;
      width: 100%;
-     background: white;
      padding: 16px;
      font-size: 18px;
      z-index: 99;
+ }
+
+ .mini-header {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     padding: 16px;
+     font-size: 18px;
+     z-index: 99;
+ }
+
+ .home header {
+     background: white;
      transition: transform 0.3s ease;
  }
 
@@ -33,6 +50,30 @@
      justify-content: space-between;
      align-items: center;
      gap: 20px;
+ }
+
+ .column-B {
+     height: 100%;
+     display: grid;
+     grid-auto-flow: row;
+     /* stack items vertically */
+     grid-template-columns: 100%;
+     /* fixed width for the single column */
+     grid-auto-rows: max-content;
+     /* each item takes up its own height */
+     overflow-y: auto;
+     /* enable vertical scroll */
+     max-height: 100vh;
+     /* or any limit you want */
+     gap: 10px;
+     padding: 10px;
+     pointer-events: none;
+ }
+
+ .column-content {
+     background-color: #00CB76;
+     height: 100px;
+     width: 100%;
  }
 
  .header .left {
