@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinite Scroll Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home_feed_style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+</head>
+
+<body>
+
+    <div class="header" id="pageHeader">
+        <div class="left">
+            <i class="fi fi-sr-menu-burger sidebar-toggle left"></i>
+            <span class="logo-text">V-streets</span>
+        </div>
+        <div class="right">
+            <i class="fi fi-rr-search"></i>
+            <div class="user-profile-wrapper">
+                <i class="fi fi-rr-user"></i>
+            </div>
+        </div>
+    </div>
+    <div class="home-feed">
+        <div class="container" id="feed-container">
+            <!-- Posts will be appended here -->
+
+        </div>
+    </div>
+    <div class="overlay">
+        <div class="side-bar left">
+            <div class="side-bar-container">
+                <div class="top ui-block">
+                </div>
+                <div id="recently-visited-container" class="ui-block sidebar-ui-block">
+                    <div id="title-bar">
+                        <div id="left">
+                            <span id="title">Recently Visited</span>
+                        </div>
+                        <div id="right">
+                            <span>See all</span>
+                        </div>
+                    </div>
+                    <div class="streets-container" id="recently-visited-streets">
+                        <div class="street-panel sidebar-flex" id="panel 1">
+                            <div class="left">
+                                <div class="icon-container" id="street-panel-variant">
+                                    <i class="fi fi-rr-users"></i>
+                                </div>
+                                <span id="title">
+                                    s/street 1
+                                </span>
+                            </div>
+                        </div>
+                        <div class="street-panel sidebar-flex" id="panel 2">
+                            <div class="left">
+                                <div class="icon-container" id="street-panel-variant">
+                                    <i class="fi fi-rr-users"></i>
+                                </div>
+                                <span id="title">
+                                    s/street 2
+                                </span>
+                            </div>
+                        </div>
+                        <div class="street-panel sidebar-flex" id="panel 3">
+                            <div class="left">
+                                <div class="icon-container" id="street-panel-variant">
+                                    <i class="fi fi-rr-users"></i>
+                                </div>
+                                <span id="title">
+                                    s/street 3
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---->
+                <div id="your-streets-container" class="ui-block sidebar-ui-block">
+                    <div id="title-bar">
+                        <div id="left">
+                            <span id="title">Your Streets</span>
+                        </div>
+                        <div id="right">
+                            <i class="fi fi-rr-angle-down"></i>
+                        </div>
+                    </div>
+                    <div class="sidebar-flex" id="create-street-option">
+                        <div class="left">
+                            <i class="fi fi-rr-plus"></i>
+                            <span class="thin-text"> Create a street</span>
+                        </div>
+                       
+                    </div>
+                    <div class="streets-container" id="recently-visited-streets">
+                        <div class="street-panel sidebar-flex" id="panel 1">
+                            <div class="left">
+                                <div class="icon-container" id="street-panel-variant">
+                                    <i class="fi fi-rr-users"></i>
+                                </div>
+                                <span id="title">
+                                    s/street 1
+                                </span>
+                            </div>
+                            <div class="right">
+                                <i class="fi fi-rr-star"></i>
+                            </div>
+                        </div>
+                        <div class="street-panel sidebar-flex" id="panel 2">
+                            <div class="left">
+                                <div class="icon-container" id="street-panel-variant">
+                                    <i class="fi fi-rr-users"></i>
+                                </div>
+                                <span id="title">
+                                    s/street 2
+                                </span>
+                            </div>
+                            <div class="right">
+                                <i class="fi fi-rr-star"></i>
+                            </div>
+                        </div>
+                        <div class="street-panel sidebar-flex" id="panel 3">
+                            <div class="left">
+                                <div class="icon-container" id="street-panel-variant">
+                                    <i class="fi fi-rr-users"></i>
+                                </div>
+                                <span id="title">
+                                    s/street 3
+                                </span>
+                            </div>
+                            <div class="right">
+                                <i class="fi fi-rr-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loading" id="loadingIndicator">Loading more posts...</div>
+    <script src="logic.js"></script>
+    <script src="home_feed.js"></script>
+    <script src="overlay.js"></script>
+</body>
+
+</html>

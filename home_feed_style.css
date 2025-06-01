@@ -1,0 +1,138 @@
+.home-feed {
+    width: 100vw;
+    height: 100vh;
+    -webkit-overflow-scrolling: touch;
+    /* Enables native iOS bounce */
+    overscroll-behavior: contain;
+}
+
+#feed-container {
+    -webkit-overflow-scrolling: touch;
+    /* Enables native iOS bounce */
+    overscroll-behavior: contain;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: white;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.395);
+}
+
+.credit-bar {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.author-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.575);
+}
+
+.street-details {
+    align-items: center;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    padding: 5px 7px;
+    border: 1px solid rgb(234, 0, 255);
+    color: rgb(234, 0, 255);
+    gap: 10px;
+    border-radius: 20px;
+}
+
+.street-icon-wrapper {
+    padding: 10px;
+    background-color: gray;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+#username-text {
+    font-weight: bolder;
+    font-size: 13px;
+}
+
+.profile-wrapper {
+
+    width: 25px;
+    height: 25px;
+    flex: 0, 0, 10px;
+    background-color: gray;
+    border-radius: 100%;
+}
+
+.title-bar {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    font-weight: bolder;
+}
+
+.post-element-container {
+    border-radius: 20px;
+    width: 100%;
+    height: 40vh;
+    background-color: gray;
+    margin-bottom: 10px;
+}
+
+.post-interactions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.feedback-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.up-down-votes {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+.inb {
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px
+}
+
+.post-options-container {
+    display: flex;
+    justify-content: space-between;
+}

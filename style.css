@@ -1,0 +1,134 @@
+ * {
+     box-sizing: border-box;
+ }
+
+ body {
+     margin: 0;
+     font-family: Arial, sans-serif;
+     background: #f6f7f8;
+ }
+
+ .logo-text {
+     font-size: 1.2em;
+     font-weight: bolder;
+     color: rgb(234, 0, 255);
+ }
+
+ .header {
+     display: flex;
+     justify-content: space-between;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     background: white;
+     padding: 16px;
+     font-size: 18px;
+     z-index: 99;
+     transition: transform 0.3s ease;
+ }
+
+ .header .right {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     gap: 20px;
+ }
+
+ .header .left {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     gap: 20px;
+ }
+
+ .icon-container {
+     background-color: gray;
+     width: 2em;
+     height: 2em;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 100vh;
+ }
+
+ .icon-container i {
+     color: white;
+ }
+
+ .container {
+     margin-top: 70px;
+     max-width: 600px;
+     margin-left: auto;
+     margin-right: auto;
+ }
+
+ .loading {
+     text-align: center;
+     padding: 20px;
+     color: #888;
+ }
+
+ i {
+     color: rgb(34, 34, 35);
+     font-size: 1em;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .overlay {
+     position: fixed;
+     width: 100vw;
+     height: 100vh;
+     bottom: 0;
+     pointer-events: none;
+     left: 0;
+     z-index: 999;
+ }
+
+ .overlay.active {
+     position: fixed;
+     width: 100vw;
+     height: 100vh;
+     z-index: 999;
+     pointer-events: auto;
+     /* enable blocking */
+     background: rgba(0, 0, 0, 0.2);
+     /* optional dimming effect */
+ }
+
+ .street-panel {
+     margin-top: 10px;
+     margin-bottom: 10px;
+
+ }
+
+ .left {
+     grid-column: 1;
+     justify-self: start;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+ .right {
+     grid-column: 3;
+     justify-self: end;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+
+ .icon-container#street-panel-variant {
+
+     width: 1.6em;
+     height: 1.6em;
+ }
+
+
+
+ /* i {
+     font-size: 10px;
+ }*/
