@@ -41,4 +41,19 @@ container.addEventListener("touchend", () => {
         offsetY = 0;
     }, 300);
 });
-*/
+*/ let lastScrollY = window.scrollY;
+const footer = document.getElementById("page-footer");
+
+window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        footer.classList.add("hide");
+    } else {
+        // Scrolling up
+        footer.classList.remove("hide");
+    }
+
+    lastScrollY = currentScrollY;
+});

@@ -2,12 +2,6 @@
      box-sizing: border-box;
  }
 
- html {
-     overflow-y: scroll;
-     /* always reserve space for scrollbar */
- }
-
-
  body {
      margin: 0;
      font-family: Arial, sans-serif;
@@ -28,6 +22,15 @@
      padding: 16px;
      font-size: 18px;
      z-index: 99;
+     background-color: white;
+     transition: transform 0.3s ease;
+
+ }
+
+ .unstrict-parent {
+     display: grid;
+     grid-template-columns: 1fr auto 1fr;
+     width: 100%;
  }
 
  .mini-header {
@@ -38,12 +41,10 @@
      padding: 16px;
      font-size: 18px;
      z-index: 99;
+     align-items: center;
  }
 
- .home header {
-     background: white;
-     transition: transform 0.3s ease;
- }
+ .home header {}
 
  .header .right {
      display: flex;
@@ -68,6 +69,11 @@
      gap: 10px;
      padding: 10px;
      pointer-events: none;
+ }
+
+ .column-B.active {
+     pointer-events: auto;
+     /* re-enable when needed */
  }
 
  .column-content {
@@ -238,7 +244,24 @@
 
  .ui-flex {
      display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+
+
+ .rounded-button {
+     padding: 6px 16px;
+     border: none;
+     border-radius: 20px;
+     font-weight: 600;
+     height: 40px;
+ }
+
+ .ui-flexB {
+     display: flex;
      justify-content: space-between;
+     align-items: center;
  }
 
  .card-A {
@@ -271,3 +294,32 @@
  /* i {
      font-size: 10px;
  }*/
+ #page-footer {
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     background: #ffffff;
+     color: #000000;
+     text-align: center;
+     padding: 1em;
+     transition: transform 0.4s ease;
+     z-index: 1000;
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .footer-nav {
+     color: black;
+     font-size: 0.5em;
+ }
+
+ .footer-nav i {
+     color: black;
+     font-size: 2.5em;
+ }
+
+ #page-footer.hide {
+     transform: translateY(100%);
+     /* Move it out of view */
+ }

@@ -1,0 +1,153 @@
+.upload-wrapper {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+#playPauseBtn {
+    margin-top: 20px;
+}
+#playPauseBtn i{
+   color: white;
+   font-size: 2em;
+}
+
+
+#community-select {
+    height: 35px;
+    background-color: #dedede;
+    color: black;
+    font-size: 17px;
+    border-radius: 20px;
+    padding: 0px 15px;
+    width: fit-content;
+}
+
+/* Header */
+#upload-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 10px;
+}
+
+#upload-header .left i,
+#upload-header .right button {
+    font-size: 18px;
+}
+
+.close-upload {
+    cursor: pointer;
+}
+
+.post-button {
+
+    background-color: #f1f1f1;
+    color: rgb(199, 199, 199);
+    cursor: pointer;
+}
+
+.post-button:hover {
+    background-color: #005fcc;
+}
+
+/* Street Tag */
+#post-street {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #888;
+    border-bottom: 1px solid #eee;
+}
+
+/* Inputs */
+.upload-inputs {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.upload-input input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: border 0.2s;
+}
+
+.upload-input input:focus {
+    border-color: #007aff;
+    outline: none;
+}
+
+/* Upload Icon Row */
+.upload-icon-row {
+    padding: 12px 16px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+#file-upload-icon {
+    font-size: 20px;
+    color: #555;
+    transition: color 0.2s;
+}
+
+#file-upload-icon:hover {
+    color: #007aff;
+}
+
+#upload-body-wrapper {
+    height: 40vh;
+}
+
+#upload-title {
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    height: 10px;
+}
+
+#upload-title-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#upload-title {
+    height: 100%;
+}
+
+#upload-body {
+    width: 100%;
+    border: none;
+    height: 100%;
+    text-align: left;
+
+    /* if it's a table cell or similar */
+    display: block;
+    /* or flex, depending on your layout */
+}
+
+textarea {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+}
+
+textarea :active {
+    outline: none;
+}
+
+textarea:focus {
+    font-style: inherit;
+    outline: none;
+    border: 2px solid #4A90E2;
+    /* Blue border instead */
+    box-shadow: none;
+    /* Removes any glow */
+}

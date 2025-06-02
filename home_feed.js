@@ -50,14 +50,14 @@ function createPost(i) {
 function loadMorePosts() {
     if (isLoading) return;
     isLoading = true;
-    loading.style.display = "block";
+    //  loading.style.display = "block";
 
     setTimeout(() => {
         for (let i = 0; i < 10; i++) {
             container.appendChild(createPost(++postCount));
         }
         isLoading = false;
-        loading.style.display = "none";
+        //   loading.style.display = "none";
     }, 1000); // simulate network delay
 }
 

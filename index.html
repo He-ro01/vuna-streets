@@ -1,252 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Infinite Scroll Page</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="home_feed_style.css">
-    <link rel="stylesheet" href="profile_home.css">
-    <link rel="stylesheet" href="sidebar.css">
-    <link rel='stylesheet'
-        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <link rel='stylesheet'
-        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
-    <link rel='stylesheet'
-        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
-    <link rel='stylesheet'
-        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="home_feed_style.css" />
+    <link rel="stylesheet" href="profile_home.css" />
+    <link rel="stylesheet" href="sidebar.css" />
+    <link rel="stylesheet" href="upload_posts_style.css" />
+    <link rel="stylesheet" href="upload_b.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-</head>
+  <body>
+    <div class="upload-post-home" style="display: none">
+      <div id="uploadSection" style="display: none">
+        <!-- Hidden File Input -->
 
-<body>
-    <div class="profile-home">
-        <div id="panel-1">
-            <i class="fi fi-rr-paper-plane"></i>
-            <div class="mini-header side-bar-flex" id="page-header">
-                <div class="right">
-                    <i class="fi fi-rr-search"></i>
-                    <i class="fi fi-rr-paper-plane"></i>
+        <input
+          type="file"
+          id="file-input"
+          accept="image/*,video/*"
+          style="display: none"
+        />
+
+        <!-- Upload Header -->
+        <div class="unstrict-parent" id="upload-header">
+          <div class="left">
+            <i class="fi fi-rr-cross close-upload"></i>
+          </div>
+          <div class="right">
+            <button class="post-button rounded-button">Post</button>
+          </div>
+        </div>
+
+        <!-- Street Tag -->
+        <div class="upload-info-row" id="post-street">
+          <div class="ui-flex" id="community-select">
+            <span class="thin-text">s/street</span>
+          </div>
+        </div>
+
+        <!-- Title and Body Input -->
+        <div class="upload-inputs">
+          <div class="upload-input" id="upload-title-wrapper">
+            <textarea
+              type="text"
+              class="prompt-text"
+              id="upload-title"
+              placeholder="Title"
+            ></textarea>
+          </div>
+          <div class="upload-input" id="upload-body-wrapper">
+            <textarea
+              type="text"
+              class="prompt-text"
+              id="upload-body"
+              placeholder="Body text (optional)"
+            ></textarea>
+          </div>
+
+          <script>
+            const textarea = document.querySelector(".prompt-text");
+            textarea.addEventListener("input", () => {
+              textarea.style.height = "auto"; // Reset height
+              textarea.style.height = textarea.scrollHeight + "px"; // Set new height
+            });
+          </script>
+        </div>
+
+        <!-- Upload Icon Row -->
+        <div class="upload-icon-row bottom-element">
+          <i
+            class="fi fi-rr-camera"
+            id="file-upload-icon"
+            style="cursor: pointer"
+          ></i>
+        </div>
+
+        <!-- File Input Trigger Script -->
+        <script>
+          document
+            .getElementById("file-upload-icon")
+            .addEventListener("click", () => {
+              document.getElementById("file-input").click();
+            });
+        </script>
+      </div>
+
+      <div id="imageEditorSection" class="editor-section">
+        <div class="image-editor-head ui-flexB">
+          <button class="back-button transparent-button">
+            <i class="fi fi-rr-arrow-small-left"></i>
+          </button>
+          <h2 class="editor-title">Edit Image</h2>
+          <button id="saveVideoTrim" class="save-button rounded-button">
+            Next
+          </button>
+        </div>
+        <div class="editor-container">
+          <div id="image-cropper-container">
+            <img id="cropperImage" src="#" alt="Selected for cropping" />
+            <div class="crop-box" id="imageCropBox"></div>
+            <div class="handle" id="tl"></div>
+            <div class="handle" id="tr"></div>
+            <div class="handle" id="br"></div>
+            <div class="handle" id="bl"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="videoEditorSection" class="editor-section">
+        <div class="video-editor-head ui-flexB">
+          <button class="back-button transparent-button">
+            <i class="fi fi-rr-arrow-small-left"></i>
+          </button>
+          <h2 class="editor-title">Adjust Video</h2>
+          <button id="saveVideoTrim" class="save-button rounded-button">
+            Next
+          </button>
+        </div>
+        <div class="editor-container">
+          <div id="video-player-container">
+            <video id="videoPlayer" playsinline></video>
+            <div id="custom-controls">
+              <span id="currentTimeDisplay" class="time-display">0:00</span>
+              <div id="timeline-container">
+                <div id="timeline">
+                  <div id="playhead"></div>
+                  <div id="trim-range"></div>
+                  <div id="startHandle" class="timeline-handle"></div>
+                  <div id="endHandle" class="timeline-handle"></div>
                 </div>
+              </div>
+              <button id="playPauseBtn">
+                <i class="fi fi-sr-play"></i>
+              </button>
+              <span
+                id="durationDisplay"
+                class="time-display"
+                style="display: none"
+                >0:00</span
+              >
             </div>
+          </div>
         </div>
-        <div id="panel-2">
-            <div class="column-B">
-                <div class="column-content"></div>
-                <div class="column-content"></div>
-                <div class="column-content"></div>
-                <div class="column-content"></div>
-                <div class="column-content"></div>
-                <div class="column-content"></div>
-                <div class="column-content"></div>
-                <div class="column-content"></div>
-                <div class="column-content"></div>
-                <div class="column-content"></div>
+      </div>
+    </div>
+
+    <div class="profile-home" style="display: none">
+      <div class="mini-header unstrict-parent" id="page-header">
+        <div class="right">
+          <i class="fi fi-rr-search"></i>
+          <i class="fi fi-rr-paper-plane"></i>
+        </div>
+      </div>
+      <div id="panel-1"></div>
+      <div id="panel-2">
+        <div class="column-B">
+          <div class="column-content"></div>
+          <div class="column-content"></div>
+          <div class="column-content"></div>
+          <div class="column-content"></div>
+          <div class="column-content"></div>
+          <div class="column-content"></div>
+          <div class="column-content"></div>
+          <div class="column-content"></div>
+          <div class="column-content"></div>
+          <div class="column-content"></div>
+        </div>
+      </div>
+    </div>
+    <div class="home">
+      <div class="header unstrict-parent" id="pageHeader">
+        <div class="left">
+          <i class="fi fi-sr-menu-burger sidebar-toggle left"></i>
+          <span class="logo-text">V-streets</span>
+        </div>
+        <div class="right">
+          <i class="fi fi-rr-search"></i>
+          <div class="user-profile-wrapper" id="user-menu-toggle">
+            <i class="fi fi-rr-user"></i>
+          </div>
+        </div>
+      </div>
+      <div class="home-feed">
+        <div class="container" id="feed-container">
+          <!-- Posts will be appended here -->
+        </div>
+      </div>
+    </div>
+    <div class="overlay">
+      <div class="side-bar left-fixed">
+        <div class="side-bar-container">
+          <div class="top ui-block"></div>
+          <div
+            id="recently-visited-container"
+            class="ui-block sidebar-ui-block"
+          >
+            <div id="title-bar">
+              <div id="left">
+                <span id="title">Recently Visited</span>
+              </div>
+              <div id="right">
+                <span>See all</span>
+              </div>
             </div>
-        </div>
-        <div clas="home" style="display: none;">
-            <div class="header" id="pageHeader">
+            <div class="streets-container" id="recently-visited-streets">
+              <div class="street-panel sidebar-flex" id="panel 1">
                 <div class="left">
-                    <i class="fi fi-sr-menu-burger sidebar-toggle left"></i>
-                    <span class="logo-text">V-streets</span>
+                  <div class="icon-container" id="street-panel-variant">
+                    <i class="fi fi-rr-users"></i>
+                  </div>
+                  <span id="title"> s/street 1 </span>
+                </div>
+              </div>
+              <div class="street-panel sidebar-flex" id="panel 2">
+                <div class="left">
+                  <div class="icon-container" id="street-panel-variant">
+                    <i class="fi fi-rr-users"></i>
+                  </div>
+                  <span id="title"> s/street 2 </span>
+                </div>
+              </div>
+              <div class="street-panel sidebar-flex" id="panel 3">
+                <div class="left">
+                  <div class="icon-container" id="street-panel-variant">
+                    <i class="fi fi-rr-users"></i>
+                  </div>
+                  <span id="title"> s/street 3 </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---->
+          <div id="your-streets-container" class="ui-block sidebar-ui-block">
+            <div id="title-bar">
+              <div id="left">
+                <span id="title">Your Streets</span>
+              </div>
+              flex
+              <div id="right">
+                <i class="fi fi-rr-angle-down"></i>
+              </div>
+            </div>
+            <div class="sidebar-flex" id="create-street-option">
+              <div class="left">
+                <i class="fi fi-rr-plus"></i>
+                <span class="thin-text"> Create a street</span>
+              </div>
+            </div>
+            <div class="streets-container" id="recently-visited-streets">
+              <div class="street-panel sidebar-flex" id="panel 1">
+                <div class="left">
+                  <div class="icon-container" id="street-panel-variant">
+                    <i class="fi fi-rr-users"></i>
+                  </div>
+                  <span id="title"> s/street 1 </span>
                 </div>
                 <div class="right">
-                    <i class="fi fi-rr-search"></i>
-                    <div class="user-profile-wrapper" id="user-menu-toggle">
-                        <i class="fi fi-rr-user"></i>
-                    </div>
+                  <i class="fi fi-rr-star"></i>
                 </div>
-            </div>
-            <div class="home-feed">
-                <div class="container" id="feed-container">
-                    <!-- Posts will be appended here -->
-
+              </div>
+              <div class="street-panel sidebar-flex" id="panel 2">
+                <div class="left">
+                  <div class="icon-container" id="street-panel-variant">
+                    <i class="fi fi-rr-users"></i>
+                  </div>
+                  <span id="title"> s/street 2 </span>
                 </div>
+                <div class="right">
+                  <i class="fi fi-rr-star"></i>
+                </div>
+              </div>
+              <div class="street-panel sidebar-flex" id="panel 3">
+                <div class="left">
+                  <div class="icon-container" id="street-panel-variant">
+                    <i class="fi fi-rr-users"></i>
+                  </div>
+                  <span id="title"> s/street 3 </span>
+                </div>
+                <div class="right">
+                  <i class="fi fi-rr-star"></i>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="overlay">
-            <div class="side-bar left-fixed">
-                <div class="side-bar-container">
-                    <div class="top ui-block">
-                    </div>
-                    <div id="recently-visited-container" class="ui-block sidebar-ui-block">
-                        <div id="title-bar">
-                            <div id="left">
-                                <span id="title">Recently Visited</span>
-                            </div>
-                            <div id="right">
-                                <span>See all</span>
-                            </div>
-                        </div>
-                        <div class="streets-container" id="recently-visited-streets">
-                            <div class="street-panel sidebar-flex" id="panel 1">
-                                <div class="left">
-                                    <div class="icon-container" id="street-panel-variant">
-                                        <i class="fi fi-rr-users"></i>
-                                    </div>
-                                    <span id="title">
-                                        s/street 1
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="street-panel sidebar-flex" id="panel 2">
-                                <div class="left">
-                                    <div class="icon-container" id="street-panel-variant">
-                                        <i class="fi fi-rr-users"></i>
-                                    </div>
-                                    <span id="title">
-                                        s/street 2
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="street-panel sidebar-flex" id="panel 3">
-                                <div class="left">
-                                    <div class="icon-container" id="street-panel-variant">
-                                        <i class="fi fi-rr-users"></i>
-                                    </div>
-                                    <span id="title">
-                                        s/street 3
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---->
-                    <div id="your-streets-container" class="ui-block sidebar-ui-block">
-                        <div id="title-bar">
-                            <div id="left">
-                                <span id="title">Your Streets</span>
-                            </div>
-                            <div id="right">
-                                <i class="fi fi-rr-angle-down"></i>
-                            </div>
-                        </div>
-                        <div class="sidebar-flex" id="create-street-option">
-                            <div class="left">
-                                <i class="fi fi-rr-plus"></i>
-                                <span class="thin-text"> Create a street</span>
-                            </div>
-
-                        </div>
-                        <div class="streets-container" id="recently-visited-streets">
-                            <div class="street-panel sidebar-flex" id="panel 1">
-                                <div class="left">
-                                    <div class="icon-container" id="street-panel-variant">
-                                        <i class="fi fi-rr-users"></i>
-                                    </div>
-                                    <span id="title">
-                                        s/street 1
-                                    </span>
-                                </div>
-                                <div class="right">
-                                    <i class="fi fi-rr-star"></i>
-                                </div>
-                            </div>
-                            <div class="street-panel sidebar-flex" id="panel 2">
-                                <div class="left">
-                                    <div class="icon-container" id="street-panel-variant">
-                                        <i class="fi fi-rr-users"></i>
-                                    </div>
-                                    <span id="title">
-                                        s/street 2
-                                    </span>
-                                </div>
-                                <div class="right">
-                                    <i class="fi fi-rr-star"></i>
-                                </div>
-                            </div>
-                            <div class="street-panel sidebar-flex" id="panel 3">
-                                <div class="left">
-                                    <div class="icon-container" id="street-panel-variant">
-                                        <i class="fi fi-rr-users"></i>
-                                    </div>
-                                    <span id="title">
-                                        s/street 3
-                                    </span>
-                                </div>
-                                <div class="right">
-                                    <i class="fi fi-rr-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      </div>
+      <div class="side-bar right-fixed">
+        <div class="side-bar-container">
+          <div class="ui-block sidebar-ui-block" id="user-menu">
+            <div class="sidebar-flex first-element">
+              <div class="icon-container profile-icon large middle">
+                <i class="fi fi-rr-user"></i>
+              </div>
+            </div>
+            <div class="middle-c" id="user-status">
+              <span id="username">u/User</span>
+              <div class="middle" id="online-status-container">
+                <span> <i class="fi fi-sr-bullet"></i>Online Status: On</span>
+              </div>
+            </div>
+            <div class="ui-flex" id="user-cred-details">
+              <div class="card-A" id="street-cred-container">
+                <div class="card-icon">
+                  <i class="fi fi-rr-hand-back-fist"></i>
                 </div>
-            </div>
-            <div class="side-bar right-fixed">
-                <div class="side-bar-container">
-                    <div class="ui-block sidebar-ui-block" id="user-menu">
-                        <div class="sidebar-flex first-element">
-                            <div class="icon-container profile-icon large middle">
-                                <i class="fi fi-rr-user"></i>
-                            </div>
-                        </div>
-                        <div class="middle-c" id="user-status">
-                            <span id="username">u/User</span>
-                            <div class="middle" id="online-status-container">
-                                <span> <i class="fi fi-sr-bullet"></i>Online Status: On</span>
-                            </div>
-                        </div>
-                        <div class="ui-flex" id="user-cred-details">
-                            <div class="card-A" id="street-cred-container">
-                                <div class="card-icon">
-                                    <i class="fi fi-rr-hand-back-fist"></i>
-                                </div>
-                                <div class="card-details">
-                                    <span class="card-text">18k</span>
-                                    <span class="card-title">Street Cred</span>
-                                </div>
-                            </div>
-
-                            <div class="card-A" id="moderations-container">
-                                <div class="card-icon">
-                                    <i class="fi fi-rr-crown"></i>
-                                </div>
-                                <div class="card-details">
-                                    <span class="card-text">4</span>
-                                    <span class="card-title">Moderations</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui-block sidebar-ui-block" id="user-menu">
-                        <div class="sidebar-flex">
-                            <div class="left">
-                                <i class="fi fi-rr-user"></i>
-                                <span> Profile</span>
-                            </div>
-                        </div>
-                        <div class="sidebar-flex">
-                            <div class="left">
-                                <i class="fi fi-rr-time-past"></i>
-                                <span>History</span>
-                            </div>
-                        </div>
-                        <div class="sidebar-flex">
-                            <div class="left">
-                                <i class="fi fi-rr-street-view"></i>
-                                <span>Create Street</span>
-                            </div>
-                        </div>
-                        <div class="sidebar-flex bottom-element">
-                            <div class="left">
-                                <i class="fi fi-rr-settings"></i>
-                                <span>Settings</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-details">
+                  <span class="card-text">18k</span>
+                  <span class="card-title">Street Cred</span>
                 </div>
-            </div>
-            <div>
+              </div>
 
+              <div class="card-A" id="moderations-container">
+                <div class="card-icon">
+                  <i class="fi fi-rr-crown"></i>
+                </div>
+                <div class="card-details">
+                  <span class="card-text">4</span>
+                  <span class="card-title">Moderations</span>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="ui-block sidebar-ui-block" id="user-menu">
+            <div class="sidebar-flex">
+              <div class="left">
+                <i class="fi fi-rr-user"></i>
+                <span> Profile</span>
+              </div>
+            </div>
+            <div class="sidebar-flex">
+              <div class="left">
+                <i class="fi fi-rr-time-past"></i>
+                <span>History</span>
+              </div>
+            </div>
+            <div class="sidebar-flex">
+              <div class="left">
+                <i class="fi fi-rr-street-view"></i>
+                <span>Create Street</span>
+              </div>
+            </div>
+            <div class="sidebar-flex bottom-element">
+              <div class="left">
+                <i class="fi fi-rr-settings"></i>
+                <span>Settings</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class=" loading" id="loadingIndicator">Loading more posts...</div>
-        <script src="logic.js"></script>
-        <script src="home_feed.js"></script>
-        <script src="overlay.js"></script>
-        <script src="fonts.js"></script>
-</body>
+      </div>
+      <div></div>
+    </div>
+    <div class="loading" id="loadingIndicator" style="display: none">
+      Loading more posts...
+    </div>
+    <footer id="page-footer">
+      <div class="footer-nav">
+        <i class="fi fi-sr-home"></i>
+        <span>Home</span>
+      </div>
+      <div class="footer-nav">
+        <i class="fi fi-rr-ai-technology"></i>
+        <span>AI Chat</span>
+      </div>
+      <div class="footer-nav">
+        <i class="fi fi-rr-plus"></i>
+        <span>Create</span>
+      </div>
+      <div class="footer-nav">
+        <i class="fi fi-rr-comment"></i>
+        <span>Chat</span>
+      </div>
+      <div class="footer-nav">
+        <i class="fi fi-rs-bell"></i>
+        <span>Create</span>
+      </div>
+    </footer>
 
+    <script src="logic.js"></script>
+    <script src="home_feed.js"></script>
+    <script src="overlay.js"></script>
+    <script src="fonts.js"></script>
+    <script src="profile_home.js"></script>
+    <script src="upload_posts.js"></script>
+  </body>
 </html>
