@@ -1,12 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const columnB = document.querySelector('.profile-home .column-B');
 
-    function isAtPageBottom(padding = 5) {
-        const scrollTop = window.scrollY || window.pageYOffset;
-        const viewportHeight = window.innerHeight;
-        const totalHeight = document.documentElement.scrollHeight;
-        return scrollTop + viewportHeight >= totalHeight - padding;
-    }
+  
     //
     function isAtTop(el, padding = 5) {
         return el.scrollTop <= padding;

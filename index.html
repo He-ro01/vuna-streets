@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="sidebar.css" />
     <link rel="stylesheet" href="upload_posts_style.css" />
     <link rel="stylesheet" href="upload_b.css" />
+     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link
       rel="stylesheet"
       href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
@@ -37,8 +38,9 @@
   </head>
 
   <body>
+    <script src="doc_loader.js"></script>
     <div class="upload-post-home" style="display: none">
-      <div id="uploadSection" style="display: none">
+      <div id="uploadSection">
         <!-- Hidden File Input -->
 
         <input
@@ -50,7 +52,7 @@
 
         <!-- Upload Header -->
         <div class="unstrict-parent" id="upload-header">
-          <div class="left">
+          <div class="left" onclick="close_post()">
             <i class="fi fi-rr-cross close-upload"></i>
           </div>
           <div class="right">
@@ -118,7 +120,7 @@
             <i class="fi fi-rr-arrow-small-left"></i>
           </button>
           <h2 class="editor-title">Edit Image</h2>
-          <button id="saveVideoTrim" class="save-button rounded-button">
+          <button id="saveImageCrop" class="save-button rounded-button">
             Next
           </button>
         </div>
@@ -391,7 +393,7 @@
         <span>AI Chat</span>
       </div>
       <div class="footer-nav">
-        <i class="fi fi-rr-plus"></i>
+        <i class="fi fi-rr-plus create-post-button"></i>
         <span>Create</span>
       </div>
       <div class="footer-nav">
@@ -405,6 +407,7 @@
     </footer>
 
     <script src="logic.js"></script>
+     <script src="retrieve_posts.js"></script>
     <script src="home_feed.js"></script>
     <script src="overlay.js"></script>
     <script src="fonts.js"></script>

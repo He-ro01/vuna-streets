@@ -3,7 +3,30 @@ const uploadSection = document.getElementById('uploadSection');
 const imageEditorSection = document.getElementById('imageEditorSection');
 const videoEditorSection = document.getElementById('videoEditorSection');
 const backButtons = document.querySelectorAll('.back-button');
+//
+const uploadPostHome = document.querySelector('.upload-post-home');
 
+
+create_post_button.onclick = function (event) {
+  // You can use the event object if needed, for example, event.preventDefault()
+  // if createpost is a link or submit button and you want to stop its default action.
+  if (uploadPostHome) {
+    uploadPostHome.style.display = 'block';
+    
+    home_feed.style = 'display:none;';
+    footer.style = 'display:none;'
+    console.log('Set display of "upload-post-home" to flex.');
+  } else {
+    console.error('Element with ID "upload-post-home" not found.');
+  }
+};
+function close_post()
+{
+    uploadPostHome.style.display = 'none';
+   
+    home_feed.style = 'display:block;';
+    footer.style = 'display:flex;'
+}
 // --- Global State ---
 let currentFile = null;
 
@@ -225,10 +248,43 @@ const imgCropper = {
     };
   }
 };
-document.getElementById('saveImageCrop').addEventListener('click', () => {
+document.getElementById('saveImageCrop').addEventListener('click', async () => {
   const anchors = imgCropper.getAnchors();
   console.log('Image Crop Anchors:', anchors);
-  alert(`Image crop saved (see console):\nx: ${anchors.x.toFixed(2)}, y: ${anchors.y.toFixed(2)}\nwidth: ${anchors.width.toFixed(2)}, height: ${anchors.height.toFixed(2)}`);
+
+  if (!currentFile) {
+    alert('No file selected or loaded for cropping.');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('file', currentFile); // Append the actual image file
+  formData.append('userID', 'aksmai0034');
+  formData.append('cropDetails', JSON.stringify(anchors)); // Send anchors as a JSON string
+  formData.append('uploadType', 'image-crop'); // To help backend identify the task
+
+  try {
+    // Replace '/your-backend-endpoint' with your actual backend URL
+    const response = await fetch('http://localhost:3000/api/process-media', {
+      method: 'POST',
+      body: formData
+      // Headers are not typically needed for FormData with fetch,
+      // the browser sets 'Content-Type': 'multipart/form-data' automatically.
+    });
+
+    if (response.ok) {
+      const result = await response.json(); // Or response.text() depending on your backend
+      alert('Image and crop data sent successfully!');
+      console.log('Server response:', result);
+      resetToUpload(); // Optionally reset UI
+    } else {
+      alert(`Error sending image: ${response.statusText}`);
+      console.error('Server error:', await response.text());
+    }
+  } catch (error) {
+    alert(`Network error: ${error.message}`);
+    console.error('Network error:', error);
+  }
 });
 function initImageEditor(file) {
   imgCropper.init(file);
@@ -272,7 +328,7 @@ videoPlayer.onloadedmetadata = () => {
   durationDisplay.textContent = formatTime(videoDuration);
   currentTimeDisplay.textContent = formatTime(0);
   playPauseIcon.classList.add("fi-sr-play");
- 
+
 
   updateTimelineUI();
 };
@@ -381,9 +437,45 @@ timeline.addEventListener('click', (e) => {
 });
 
 
-saveVideoTrimBtn.addEventListener('click', () => {
-  console.log('Video Trim Timestamps:', { start: startTime, end: endTime });
-  alert(`Video trim saved (see console):\nStart: ${formatTime(startTime)}\nEnd: ${formatTime(endTime)}`);
+saveVideoTrimBtn.addEventListener('click', async () => {
+  const trimDetails = {
+    start: startTime,
+    end: endTime,
+    videoDuration: videoDuration // It's good to send original duration too
+  };
+  console.log('Video Trim Timestamps:', trimDetails);
+
+  if (!currentFile) {
+    alert('No file selected or loaded for trimming.');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('file', currentFile); // Append the actual video file
+  formData.append('userID', 'aksmai0034');
+  formData.append('trimDetails', JSON.stringify(trimDetails)); // Send trim times as a JSON string
+  formData.append('uploadType', 'video-trim'); // To help backend identify the task
+
+  try {
+    // Replace '/your-backend-endpoint' with your actual backend URL
+    const response = await fetch('http://localhost:3000/api/process-media', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (response.ok) {
+      const result = await response.json(); // Or response.text()
+      alert('Video and trim data sent successfully!');
+      console.log('Server response:', result);
+      resetToUpload(); // Optionally reset UI
+    } else {
+      alert(`Error sending video: ${response.statusText}`);
+      console.error('Server error:', await response.text());
+    }
+  } catch (error) {
+    alert(`Network error: ${error.message}`);
+    console.error('Network error:', error);
+  }
 });
 
 // Initial setup on window resize for responsive UI updates
