@@ -1,0 +1,24 @@
+.street-create-home {
+    display: none;
+}
+
+.street-create-home.active {
+    display: block;
+    background: white;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.street-create-page {
+    display: none;
+}
+
+.street-create-page.active {
+    display: block;
+}
+
+.topic-categories-container {
+    height: 40vh;
+    overflow: hidden;
+}

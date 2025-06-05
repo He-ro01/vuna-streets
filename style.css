@@ -248,6 +248,14 @@
      align-items: center;
  }
 
+ .ui-flex-column {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+
 
 
  .rounded-button {
@@ -311,6 +319,14 @@
 
  }
 
+ .overlay-element {
+     display: none;
+ }
+
+ .overlay-element.active {
+     display: block;
+ }
+
  .footer-nav {
      color: rgb(37, 37, 37);
      font-size: 0.6em;
@@ -325,4 +341,8 @@
  #page-footer.hide {
      transform: translateY(100%);
      /* Move it out of view */
+ }
+
+ #page-header.hide {
+     transform: translateY(-100%);
  }

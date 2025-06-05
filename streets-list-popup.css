@@ -1,0 +1,6 @@
+.streets-list-popup {
+    display: none;
+}
+.streets-list-popup.active {
+    display: block;
+}

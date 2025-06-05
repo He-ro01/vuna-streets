@@ -1,0 +1,135 @@
+<div class="upload-post-home" style="display: none">
+  <div id="uploadSection">
+    <!-- Hidden File Input -->
+
+    <input type="file" id="file-input" accept="image/*,video/*" style="display: none" />
+
+    <!-- Upload Header -->
+    <div class="unstrict-parent" id="upload-header">
+      <div class="left" onclick="close_post()">
+        <i class="fi fi-rr-cross close-upload"></i>
+      </div>
+      <div class="right">
+        <button class="post-button rounded-button">Post</button>
+      </div>
+    </div>
+
+    <!-- Street Tag -->
+    <div class="upload-info-row" id="post-street">
+      <div class="ui-flex-column" id="community-select"
+        onclick="openOverlay('.streets-list-popup'); update_streets_list_container(); enableOverlayBlocking();">
+        <span class="thin-text cursor-street-name">s/street</span>
+      </div>
+    </div>
+
+    <!-- Title and Body Input -->
+    <div class="upload-inputs">
+      <div class="upload-input" id="upload-title-wrapper">
+        <textarea type="text" class="prompt-text" id="upload-title" placeholder="Title"></textarea>
+      </div>
+      <div class="upload-input" id="upload-body-wrapper">
+        <textarea type="text" class="prompt-text" id="upload-body" placeholder="Body text (optional)"></textarea>
+      </div>
+
+      <script>
+        const textarea = document.querySelector(".prompt-text");
+        textarea.addEventListener("input", () => {
+          textarea.style.height = "auto"; // Reset height
+          textarea.style.height = textarea.scrollHeight + "px"; // Set new height
+        });
+      </script>
+    </div>
+
+    <!-- Upload Icon Row -->
+    <div class="upload-icon-row bottom-element">
+      <i class="fi fi-rr-camera" id="file-upload-icon" style="cursor: pointer"></i>
+    </div>
+
+    <!-- File Input Trigger Script -->
+    <script>
+      document
+        .getElementById("file-upload-icon")
+        .addEventListener("click", () => {
+          document.getElementById("file-input").click();
+        });
+    </script>
+  </div>
+
+  <div id="imageEditorSection" class="editor-section">
+    <div class="image-editor-head ui-flexB">
+      <button class="back-button transparent-button">
+        <i class="fi fi-rr-arrow-small-left"></i>
+      </button>
+      <h2 class="editor-title">Edit Image</h2>
+      <button id="saveImageCrop" class="save-button rounded-button">
+        Next
+      </button>
+    </div>
+    <div class="editor-container">
+      <div id="image-cropper-container">
+        <img id="cropperImage" src="#" alt="Selected for cropping" />
+        <div class="crop-box" id="imageCropBox"></div>
+        <div class="handle" id="tl"></div>
+        <div class="handle" id="tr"></div>
+        <div class="handle" id="br"></div>
+        <div class="handle" id="bl"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="videoEditorSection" class="editor-section">
+    <div class="video-editor-head ui-flexB">
+      <button class="back-button transparent-button">
+        <i class="fi fi-rr-arrow-small-left"></i>
+      </button>
+      <h2 class="editor-title">Adjust Video</h2>
+      <button id="saveVideoTrim" class="save-button rounded-button">
+        Next
+      </button>
+    </div>
+    <div class="editor-container">
+      <div id="video-player-container">
+        <video id="videoPlayer" playsinline></video>
+        <div id="custom-controls">
+          <span id="currentTimeDisplay" class="time-display">0:00</span>
+          <div id="timeline-container">
+            <div id="timeline">
+              <div id="playhead"></div>
+              <div id="trim-range"></div>
+              <div id="startHandle" class="timeline-handle"></div>
+              <div id="endHandle" class="timeline-handle"></div>
+            </div>
+          </div>
+          <button id="playPauseBtn">
+            <i class="fi fi-sr-play"></i>
+          </button>
+          <span id="durationDisplay" class="time-display" style="display: none">0:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="upload_posts.js"></script>
+  <script>
+
+    let isOpen = false;
+    
+    function toggleStreets() {
+      const container = document.getElementById('community-select');
+      container.innerHTML = ''; // Clear current contents
+
+      if (isOpen) {
+        // Closed state
+        container.innerHTML = '<span>"s/street"</span>';
+      } else {
+        // Open state with 5 street spans
+        for (let i = 1; i <= 5; i++) {
+          const span = document.createElement('span');
+          span.textContent = `"street${i}"`;
+          container.appendChild(span);
+        }
+      }
+
+      isOpen = !isOpen;
+    }
+  </script>
+</div>

@@ -1,0 +1,91 @@
+<div class="street-create-home">
+    <div id="app-container">
+        <div class="street-create-page active" id="page-1-create-details">
+
+            <h2 id="page-1-main-title" class="page-title">Create Your Street</h2>
+            <form id="street-creation-form">
+                <div class="street-create-head unstrict-parent">
+                    <div class="right">
+                        <button type="submit" id="form-step-1-next-button" class="button primary-button">
+                            Next
+                        </button>
+                    </div>
+                </div>
+                <label id="street-name-label" class="form-label" for="street-name-input">Street Name:</label>
+                <input type="text" id="street-name-input" class="form-input" required />
+
+                <label id="description-label" class="form-label" for="description-textarea">Description:</label>
+                <textarea id="street-preview-description" class="form-textarea" rows="4"
+                    placeholder="Describe your street (min. 16 characters).. .">
+                </textarea>
+
+
+            </form>
+        </div>
+
+        <div class="street-create-page" id="page-2-style-street">
+            <h2 id="street-preview-name" class="page-title"></h2>
+            <p id="street-pre`view-description" class="page-subtext"></p>
+            <div id="page-2-actions-group" class="button-group">
+                <button id="add-banner-image-button" class="button secondary-button">
+                    Add Banner Image
+                </button>
+                <button id="add-avatar-image-button" class="button secondary-button">
+                    Add Avatar Image
+                </button>
+                <button id="next-to-topics-page-button" class="button primary-button">
+                    Next
+                </button>
+            </div>
+        </div>
+
+        <div class="street-create-page" id="page-3-choose-topics">
+            <h2 id="page-3-main-title" class="page-title">Choose Street Topics</h2>
+            <p id="topics-page-instruction" class="page-subtext">
+                Add up to 3 topics to help users discover your street.
+            </p>
+            <p id="topics-page-counter-text" class="page-subtext">
+                Topics: <span id="selected-topic-count-span">0</span>/3
+            </p>
+            <div id="selected-topics-container"></div>
+            <div id="topic-categories-list" class="topic-categories-container"></div>
+            <button id="next-to-type-page-button" class="button primary-button" disabled>
+                Next
+            </button>
+        </div>
+
+        <div class="street-create-page" id="page-4-set-type">
+            <h2 id="page-4-main-title" class="page-title">Set Street Type</h2>
+            <p id="street-type-page-instruction" class="page-subtext">
+                Decide who can view and contribute in your community.
+            </p>
+            <div id="street-type-options-container" class="options-group">
+                <div id="street-type-option-public" class="option-item" data-value="public">
+                    <h3 id="option-public-heading" class="option-title">🌍 Public</h3>
+                    <p id="option-public-description" class="option-description">
+                        Anyone can find, view, and contribute.
+                    </p>
+                </div>
+                <div id="street-type-option-private" class="option-item" data-value="private">
+                    <h3 id="option-private-heading" class="option-title">🔒 Private</h3>
+                    <p id="option-private-description" class="option-description">
+                        Only invited members can view and contribute.
+                    </p>
+                </div>
+                <div id="street-type-option-viewable" class="option-item" data-value="viewable">
+                    <h3 id="option-viewable-heading" class="option-title">
+                        👁️ Viewable Only
+                    </h3>
+                    <p id="option-viewable-description" class="option-description">
+                        Anyone can view, only members can post.
+                    </p>
+                </div>
+            </div>
+            <button id="finish-creation-button" class="button primary-button" disabled>
+                Finish
+            </button>
+        </div>
+    </div>
+
+    <script src="street_creation.js"></script>
+</div>

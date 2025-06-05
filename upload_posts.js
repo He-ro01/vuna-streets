@@ -4,28 +4,58 @@ const imageEditorSection = document.getElementById('imageEditorSection');
 const videoEditorSection = document.getElementById('videoEditorSection');
 const backButtons = document.querySelectorAll('.back-button');
 //
+
 const uploadPostHome = document.querySelector('.upload-post-home');
-
-
+const create_post_button = document.querySelector('.create-post-button');
+//console.log('initialized');
 create_post_button.onclick = function (event) {
+  // console.log('create-post-button-clicked');
   // You can use the event object if needed, for example, event.preventDefault()
   // if createpost is a link or submit button and you want to stop its default action.
   if (uploadPostHome) {
     uploadPostHome.style.display = 'block';
-    
     home_feed.style = 'display:none;';
     footer.style = 'display:none;'
-    console.log('Set display of "upload-post-home" to flex.');
+    //  console.log('Set display of "upload-post-home" to flex.');
   } else {
-    console.error('Element with ID "upload-post-home" not found.');
+    // console.error('Element with ID "upload-post-home" not found.');
   }
 };
-function close_post()
-{
-    uploadPostHome.style.display = 'none';
-   
-    home_feed.style = 'display:block;';
-    footer.style = 'display:flex;'
+async function update_streets_list_container() {
+  // console.log('container-updated');
+  const streets_list_container = document.getElementById('streets-list-container');
+  if (!streets_list_container) {
+    console.error("Element with ID 'streets-list-container' not found");
+    return;
+  }
+
+  const streets = await getUserStreets();
+
+  // Clear the container first (optional)
+  streets_list_container.innerHTML = '';
+
+  // Append each street as text inside a <div> (or <li> if you want a list)
+  for (const street of streets) {
+    // You can customize the element or just append text
+    const streetElement = document.createElement('div');
+
+    streetElement.innerHTML = `<div class = street-element-${street.name} onClick = "set_cursor_street('${street.name}'); closeOverlay();"><span>${street.name}</span> </div>`;
+    streets_list_container.appendChild(streetElement);
+  }
+}
+function set_cursor_street(street) {
+  //console.log(street);
+  cursor_street_name = street;
+  cursor_street = document.querySelector('.cursor-street-name');
+  //console.log(cursor_street);
+  cursor_street.innerHTML = `s/${street}`;
+
+}
+function close_post() {
+  uploadPostHome.style.display = 'none';
+
+  home_feed.style = 'display:block;';
+  footer.style = 'display:flex;'
 }
 // --- Global State ---
 let currentFile = null;
@@ -249,8 +279,12 @@ const imgCropper = {
   }
 };
 document.getElementById('saveImageCrop').addEventListener('click', async () => {
+  if (cursor_street == '') {
+    //console.log('no-street-name');
+    return;
+  }
   const anchors = imgCropper.getAnchors();
-  console.log('Image Crop Anchors:', anchors);
+  //console.log('Image Crop Anchors:', anchors);
 
   if (!currentFile) {
     alert('No file selected or loaded for cropping.');
@@ -262,6 +296,7 @@ document.getElementById('saveImageCrop').addEventListener('click', async () => {
   formData.append('userID', 'aksmai0034');
   formData.append('cropDetails', JSON.stringify(anchors)); // Send anchors as a JSON string
   formData.append('uploadType', 'image-crop'); // To help backend identify the task
+  formData.append('street', cursor_street_name);
 
   try {
     // Replace '/your-backend-endpoint' with your actual backend URL
@@ -275,7 +310,7 @@ document.getElementById('saveImageCrop').addEventListener('click', async () => {
     if (response.ok) {
       const result = await response.json(); // Or response.text() depending on your backend
       alert('Image and crop data sent successfully!');
-      console.log('Server response:', result);
+      //console.log('Server response:', result);
       resetToUpload(); // Optionally reset UI
     } else {
       alert(`Error sending image: ${response.statusText}`);
@@ -438,12 +473,16 @@ timeline.addEventListener('click', (e) => {
 
 
 saveVideoTrimBtn.addEventListener('click', async () => {
+  if (cursor_street == '') {
+    //console.log('no-street-name');
+    return;
+  }
   const trimDetails = {
     start: startTime,
     end: endTime,
     videoDuration: videoDuration // It's good to send original duration too
   };
-  console.log('Video Trim Timestamps:', trimDetails);
+  //console.log('Video Trim Timestamps:', trimDetails);
 
   if (!currentFile) {
     alert('No file selected or loaded for trimming.');
@@ -455,6 +494,8 @@ saveVideoTrimBtn.addEventListener('click', async () => {
   formData.append('userID', 'aksmai0034');
   formData.append('trimDetails', JSON.stringify(trimDetails)); // Send trim times as a JSON string
   formData.append('uploadType', 'video-trim'); // To help backend identify the task
+  formData.append('street', cursor_street_name);
+
 
   try {
     // Replace '/your-backend-endpoint' with your actual backend URL
@@ -466,7 +507,7 @@ saveVideoTrimBtn.addEventListener('click', async () => {
     if (response.ok) {
       const result = await response.json(); // Or response.text()
       alert('Video and trim data sent successfully!');
-      console.log('Server response:', result);
+      //  console.log('Server response:', result);
       resetToUpload(); // Optionally reset UI
     } else {
       alert(`Error sending video: ${response.statusText}`);

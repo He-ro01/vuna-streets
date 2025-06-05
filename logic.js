@@ -1,6 +1,8 @@
 const container = document.getElementById("feed-container");
 const overlay = document.querySelector(`.overlay`);
-const user_menu_toggle = document.getElementById(`user-menu-toggle`)
+const user_menu_toggle = document.getElementById(`user-menu-toggle`);
+const cursor_street_name = '';
+const cursor_user_name = '';
 
 /*let startY = 0;
 let dragging = false;
@@ -43,17 +45,27 @@ container.addEventListener("touchend", () => {
 });
 */ let lastScrollY = window.scrollY;
 const footer = document.getElementById("page-footer");
+const header = document.getElementById("page-header");
+streets_list = document.getElementById(`streets-list-popup`);
 
 window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
 
     if (currentScrollY > lastScrollY) {
         // Scrolling down
+        header.classList.add("hide")
         footer.classList.add("hide");
     } else {
         // Scrolling up
+        header.classList.remove("hide")
         footer.classList.remove("hide");
     }
 
     lastScrollY = currentScrollY;
 });
+function openStreetsList() {
+    if (!streets_list)
+        streets_list = document.getElementById(`streets-list-popup`);
+    streets_list.style.display = `block`;
+}
+

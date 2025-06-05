@@ -15,8 +15,8 @@ async function retrieve_posts_and_log() { // 1. Added 'async'
 
     // 3. Parse the JSON data from the response body
     const postsData = await response.json();
-    console.log('Retrieved posts successfully:');
-    console.log(postsData);
+    //console.log('Retrieved posts successfully:');
+    //console.log(postsData);
 
     // The 'postsData' object will look something like this based on our backend controller:
     // {
@@ -31,7 +31,7 @@ async function retrieve_posts_and_log() { // 1. Added 'async'
     if (postsData.success && postsData.data) {
       // Example: Loop through the posts
       postsData.data.forEach(post => {
-        console.log(`Media URL: ${post.mediaUrl}, Type: ${post.uploadType}`);
+        // console.log(`Media URL: ${post.mediaUrl}, Type: ${post.uploadType}`);
         // Here you would typically update your UI with these posts
       });
     }

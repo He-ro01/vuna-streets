@@ -1,0 +1,57 @@
+<div class="streets-feed overlay-element">
+    <div class="feed street-feed" feed-type='streets'>
+        <div class="container" id="feed-container">
+            <!-- Posts will be appended here -->
+            <div class='stencil-feed'>
+                <div class="credit-bar unstrict-parent">
+                    <span class="author-details left">
+                        <div class="profile-wrapper"><i class="fi fi-ss-user"></i></div>
+                        <div class="post-details">
+                            <span id="username-text">User</span>
+                            <span id='post-date-text'>17h</span>
+                        </div>
+                    </span>
+                    <span class="street-details right">
+                        <span id='street-name-text'>s/Street Name</span>
+                        <div class="street-icon-wrapper">
+                            <i class="fi fi-ss-user"></i>
+                        </div>
+                    </span>
+                </div>
+                <div class="title-bar">
+                    <span class="post-title">Title</span>
+                </div>
+                <div class="post-element-container" style="overflow: hidden">
+                    <div class="post-element-sidescroll-container" style="${postElementContainerStyle}">
+
+                    </div>
+                </div>
+                <div class="post-interactions">
+                    <div class="feedback-container">
+                        <div class="up-down-votes inb">
+                            <div class="up-votes icon-wrapper">
+                                <i class="fi fi-rr-up"></i><span id='upvotes-text'></span>
+                            </div>
+                            <span>|</span>
+                            <div class="down-votes icon-wrapper">
+                                <i class="fi fi-rr-down"></i>
+                            </div>
+                        </div>
+                        <div class="comments-button inb">
+                            <i class="fi fi-rr-comment-alt"></i><span>5</span>
+                        </div>
+                        <span id='views-text'>
+                            20k views
+                        </span>
+                    </div>
+                    <div class="post-options-container">
+                        <div class="share-button inb">
+                            <i class="fi fi-rr-paper-plane"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type='module' src="home_feed.js"></script>
+</div>
